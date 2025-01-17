@@ -1,7 +1,280 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<title>Wesley Perry | Full-stack Software Engineer</title>
+	<style>
+		*, *::before, *::after {
+			margin: 0;
+			padding: 0;
+			box-sizing: inherit;
+		}
+		html {
+			scroll-behavior: smooth;
+		}
+		body {
+			min-height: 100vh;
+			color: white;
+			background-color: #111;
+			overflow-x: hidden;
+		}
+		#nav {
+			position: sticky;
+			top: 0;
+			height: 2rem;
+			background-color: grey;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 3;
+		}
+		#nav ul {
+			display: flex;
+			letter-spacing: 1px;
+		}
+		#nav li {
+			list-style: none;
+			margin-right: 2rem;
+		}
+		#nav li:hover, #contact li:hover, .intro span {
+			color: lightblue;
+		}
+		#nav a, #contact a {
+			text-decoration: none;
+			color: inherit;
+		}
+		#home {
+			display: flex;
+			height: 100vh;
+		}
+		.canvasContainer {
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			height: 100vh;
+			background-color: #111;
+		}
+		canvas {
+			height: 100%;
+			width: 100%;
+		}
+		.intro {
+			align-self: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 3rem;
+			margin-left: auto;
+			margin-right: auto;
+			z-index: 2;
+		}
+		.section {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.section > h2 {
+			position: relative;
+			font-size: 2rem;
+			letter-spacing: 1px;
+			margin-top: 6rem;
+			margin-bottom: 2rem;
+			z-index: 2;
+		}
+		.section > h2:after {
+			content: '';
+			border-bottom: .5rem solid lightblue;
+			display: block;
+		}
+		.section > div {
+			max-width: 650px;
+			margin-left: auto;
+			margin-right: auto;
+			background-color: #222;
+			padding: 15px;
+			border: 1px solid black;
+			z-index: 2;
+		}
+		.row {
+			display: table-row;
+		}
+		.row > div {
+			display: table-cell;
+			padding: 10px;
+		}
+		.cat {
+			width: 7rem;
+		}
+		#workHistory > div {
+			padding-bottom: 0;
+			margin-bottom: 15px;
+		}
+		#workHistory > div > div {
+			display: flex;
+			margin-bottom: 2px;
+		}
+		.roleTitle {
+			font-weight: bold;
+		}
+		.flexCell {
+			flex: 1;
+		}
+		#workHistory .list {
+			display: block;
+			padding-left: 20px;
+		}
+		.list ul {
+			margin-bottom: 1rem;
+		}
+		.list span {
+			margin-left: -15px;
+		}
+		#contact {
+			margin-bottom: 2rem;
+		}
+		#contact ul {
+			display: flex;
+			letter-spacing: 1px;
+		}
+		#contact li {
+			list-style: none;
+			margin-left: 1rem;
+			margin-right: 1rem;
+		}
+	</style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<div id="nav">
+	<ul>
+		<li><a href="#home">Home</a></li>
+		<li><a href="#about">About</a></li>
+		<li><a href="#skills">Skills</a></li>
+		<li><a href="#workHistory">Work History</a></li><!--
+		<li><a href="#projects">Projects</a></li>-->
+		<li><a href="#contact">Contact</a></li>
+	</ul>
+</div>
+<div id="home">
+	<div class="canvasContainer">
+		<canvas>
+	</div>
+	<div class="intro">
+		<div>
+			<span>Wesley Perry</span>
+		</div>
+		<div>
+			Full-stack Software Engineer
+		</div>
+	</div>
+</div>
+<div id="about" class="section">
+	<h2>About</h2>
+	<div>
+		<div class="about">Versatile software engineer with 10+ years of experience working with clients to design, develop, and maintain interactive web applications, back-end services, and internal tools. Skilled at quickly adopting new technologies and programming languages to accomplish objectives.
+		<br><br>
+		I hold a Bachelor of Science degree in Computer Science from California State University - Sacramento. I am very familiar with Object Oriented Programming (OOP), design patterns, B2B/B2C, SaaS, microservice development, and the AWS ecosystem.</div>
+	</div>
+</div>
+<div id="skills" class="section">
+	<h2>Skills</h2>
+	<div class="skills">
+		<div class="row">
+			<div class="cat">Experience with:</div>
+			<div>C, C++, Java, PHP, Python, JavaScript, HTML, CSS</div>
+		</div>
+		<div class="row">
+			<div>Expertise in:</div>
+			<div>RESTful APIs, MySQL Schema, Linux and Windows Server Administration, Apache Web Server, Amazon Web Services (AWS)</div>
+		</div>
+		<div class="row">
+			<div>Softer skills:</div>
+			<div>Attention to Detail, Continuous Learning, Customer Service, Debugging</div>
+		</div>
+	</div>
+</div>
+<div id="workHistory" class="section">
+	<h2>Work History</h2>
+	<div>
+		<div class="roleTitle">
+			<div class="flexCell">Full-stack Software Engineer, Independent Contractor</div>
+			<div>2014 - Current</div>
+		</div>
+		<div>
+			<div>Self-Employed | El Cerrito, California (Remote)</div>
+			<div></div>
+		</div>
+		<div class="list">
+			<ul>
+				<li>Cultivate a diverse clientele from the security to entertainment industries for over 10 years.</li>
+				<li>Work with and provide support to client representatives, from company owners to the QA team.</li>
+				<li>Collaborate with cross-functional teams and clients to establish project specifications, implement or adjust project functionality and features, and create custom software solutions.</li>
+				<li>Launch and manage cloud services in the AWS ecosystem including administrating Linux and Windows servers (EC2), Apache web servers, MySQL databases (RDS and self-hosted), data storage (S3), DNS services (Route 53), and email services (SES and self-hosted).</li>
+				<li>Create and update REST API documentation using the OpenAPI specification allowing other developers easy and consistent access to verify live API functionality and API request format.</li>
+			</ul>
+			<span>Completed projects:</span>
+			<ul>
+				<li>Developed a cloud-based account management system for a client specializing in access control systems. This system enabled the client’s customers to securely manage their access control settings via web browsers and the client’s mobile app.</li>
+				<li>Used HTTPS, MQTT, Python, PHP, HTML, CSS, JavaScript, and MySQL to develop and maintain back-end RESTful APIs, front-end web pages, and databases.</li>
+				<li>Converted a client’s existing standalone program and website into a cloud B2B SaaS solution. This involved developing secure administration and customer account management web portals.</li>
+				<li>Added various requested features to a client’s existing interactive website including efficiency improvements, integration with a secure payment provider, and administration scripts which automate resolutions to frequent service calls.</li>
+				<li>Constructed a lightweight REST API and administration web portal to facilitate user registrations for a client’s pre-existing access control system.</li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<div class="roleTitle">
+			<div class="flexCell">Server Administrator, Consultant</div>
+			<div>2018 - Current</div>
+		</div>
+		<div>
+			<div>Self-Employed | El Cerrito, California (Remote)</div>
+			<div></div>
+		</div>
+		<div class="list">
+			<ul>
+				<li>Perform administration tasks on a Windows server for an online video gaming community.</li>
+				<li>Set up and modify various game servers, game modifications, and administration tools.</li>
+				<li>Create and modify custom server administration scripts to allow community leaders to safely perform server tasks without prior technical knowledge, reducing System Admin duties.</li>
+				<li>Produce supervisor scripts to monitor game servers. For example: a Node.js script which automates removal of known bad-actors from game servers, reducing moderator workload.</li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<div class="roleTitle">
+			<div class="flexCell">MMORPG Game Developer and Administrator, Consultant</div>
+			<div>2008 - 2014</div>
+		</div>
+		<div>
+			<div>Self-Employed | El Cerrito, California (Remote)</div>
+			<div></div>
+		</div>
+		<div class="list">
+			<ul>
+				<li>Documented and analyzed the results of thousands of individual in-game actions to recover legacy gameplay formulas (black/gray-box formula recovery).</li>
+				<li>Built new internal tools, resolved long-standing bugs, and added features to existing tools, enhancing developer QoL, accelerating development pace, and enabling new development possibilities.</li>
+				<li>Created Excel VBA macros to automate the analysis of server logs, flagging and graphically presenting patterns of disallowed player actions (automated abuse prevention).</li>
+				<li>Wrote scripts which simulated unauthorized gameplay to test and improve back-end detection of prohibited automated behaviors (Turing test).</li>
+				<li>Investigated and triaged user bug reports; identifying underlying problems, articulating them in technical terms, and adding details where needed for developer review and action.</li>
+			</ul>
+		</div>
+	</div>
+</div><!--
+<div id="projects" class="section">
+	<h2>Projects</h2>
+	<div>Project 1</div>
+	<div>Project 2</div>
+	<div>Project 3</div>
+</div>-->
+<div id="contact" class="section">
+	<h2>Contact</h2>
+	<div>
+		<ul>
+			<li><a href="mailto:wesleyperry2234@gmail.com">Email</a></li>
+			<li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/wesley-perry-5777a9125/">LinkedIn</a></li>
+			<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/WesleyPerry2234">GitHub</a></li>
+		</ul>
+	</div>
+</div>
 </body>
 </html>
