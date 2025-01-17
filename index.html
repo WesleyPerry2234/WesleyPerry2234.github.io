@@ -26,6 +26,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			white-space: nowrap;
 			z-index: 3;
 		}
 		#nav ul {
@@ -35,6 +36,11 @@
 		#nav li {
 			list-style: none;
 			margin-right: 2rem;
+		}
+		@media (max-width: 600px) {
+			#nav li {
+				margin-right: 1rem;
+			}
 		}
 		#nav li:hover, #contact li:hover, .intro span {
 			color: lightblue;
@@ -81,6 +87,7 @@
 			letter-spacing: 1px;
 			margin-top: 6rem;
 			margin-bottom: 2rem;
+			white-space: nowrap;
 			z-index: 2;
 		}
 		.section h2:after {
@@ -172,14 +179,14 @@
 <div id="about" class="section">
 	<h2>About</h2>
 	<div>
-		<div class="about">Versatile software engineer with 10+ years of experience working with clients to design, develop, and maintain interactive web applications, back-end services, and internal tools. Skilled at quickly adopting new technologies and programming languages to accomplish objectives.
+		<div>Versatile software engineer with 10+ years of experience working with clients to design, develop, and maintain interactive web applications, back-end services, and internal tools. Skilled at quickly adopting new technologies and programming languages to accomplish objectives.
 		<br><br>
 		I hold a Bachelor of Science degree in Computer Science from California State University - Sacramento. I am very familiar with Object Oriented Programming (OOP), design patterns, B2B/B2C, SaaS, microservice development, and the AWS ecosystem.</div>
 	</div>
 </div>
 <div id="skills" class="section">
 	<h2>Skills</h2>
-	<div class="skills">
+	<div>
 		<div class="row">
 			<div class="cat">Experience with:</div>
 			<div>C, C++, Java, PHP, Python, JavaScript, HTML, CSS</div>
