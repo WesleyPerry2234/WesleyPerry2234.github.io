@@ -3,6 +3,102 @@
 <head>
 	<title>Wesley Perry | Full-stack Software Engineer</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		//Just for fun...
+		function animation() {
+			var dots = [];
+			var canvas = document.querySelector('canvas');
+			canvas.width = innerWidth;
+			canvas.height = innerHeight;
+			var c = canvas.getContext('2d');
+			var createParticles = false;
+			var mouseLocation = {x:0,y:0};
+			
+			canvas.addEventListener('mousemove', function(e) {
+				const rect = canvas.getBoundingClientRect();
+				mouseLocation.x = e.clientX - rect.left;
+				mouseLocation.y = e.clientY - rect.top;
+			});
+			
+			canvas.addEventListener('mousedown', function(e) {
+				createParticles = true;
+			});
+			
+			canvas.addEventListener('mouseup', function(e) {
+				createParticles = false;
+			});
+			
+			function dot(x,y,sx,sy,color,lifeSpan=1000) {
+				this.lifeSpan = lifeSpan;
+				this.x = x;
+				this.y = y;
+				this.sx = sx;
+				this.sy = sy;
+				this.color = color;
+				
+				this.update = function() {
+					this.lifeSpan--;
+					if(this.lifeSpan < 0) {
+						dots.splice(dots.indexOf(this),1);
+						return;
+					}
+					if(this.x + this.sx > canvas.width || this.x + this.sx < 0) {
+						this.sx *= -1;
+					}
+					if(this.y + this.sy > canvas.height || this.y + this.sy < 0) {
+						this.sy *= -1;
+					}
+					this.x += this.sx;
+					this.y += this.sy;
+					this.draw();
+				}
+				
+				this.draw = function() {
+					c.fillStyle = this.color;
+					c.fillRect(this.x,this.y,1,1);
+				}
+			}
+			
+			function draw() {
+				c.clearRect(0,0,canvas.width,canvas.height);
+				if(createParticles){
+					let sx = Math.random()-.5;
+					let sy = Math.random()-.5;
+					let l = Math.ceil(Math.random() * 50 + 50);
+					dots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+					sx = Math.random()*8-4;
+					sy = Math.random()*8-4;
+					l = Math.ceil(Math.random() * 25 + 25);
+					dots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+					sx = Math.random()*2-1;
+					sy = Math.random()*2-1;
+					l = Math.ceil(Math.random() * 200 + 200);
+					dots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+					sx = Math.random()*2-1;
+					sy = Math.random()*2-1;
+					l = Math.ceil(Math.random() * 5000 + 5000);
+					dots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+				}
+				dots.forEach((e) => e.update());
+				requestAnimationFrame(draw);
+			}
+			
+			//init:
+			//populate dotArray;
+			for(var i=0;i<1000;i++) {
+				const x = Math.random() * canvas.width;
+				const y = Math.random() * canvas.height;
+				const sx = Math.random()-.5;
+				const sy = Math.random()-.5;
+				const l = Math.ceil(Math.random() * 10000 + 10000);
+				dots.push(new dot(x,y,sx,sy,'#444',l));
+			}
+			//initialize animation loop;
+			draw();
+		}
+		//Wait for dom to load:
+		window.addEventListener('DOMContentLoaded', animation);
+	</script>
 	<style>
 		*, *::before, *::after {
 			margin: 0;
@@ -59,12 +155,6 @@
 			right: 0;
 			left: 0;
 			bottom: 0;
-			height: 100vh;
-			background-color: #111;
-		}
-		canvas {
-			height: 100%;
-			width: 100%;
 		}
 		.intro {
 			align-self: center;
@@ -76,6 +166,10 @@
 			margin-left: auto;
 			margin-right: auto;
 			z-index: 2;
+			pointer-events: none;
+		}
+		.intro > div {
+			pointer-events: initial;
 		}
 		.section {
 			display: flex;
