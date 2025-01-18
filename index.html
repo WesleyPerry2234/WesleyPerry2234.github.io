@@ -12,15 +12,18 @@
 			canvas.height = innerHeight;
 			var c = canvas.getContext('2d');
 			var createParticles = false;
+			var createParticlesCount = 0;
 			var mouseLocation = {x:0,y:0};
 			
 			canvas.addEventListener('pointermove', function(e) {
+				createParticlesCount = 0;
 				const rect = canvas.getBoundingClientRect();
 				mouseLocation.x = e.clientX - rect.left;
 				mouseLocation.y = e.clientY - rect.top;
 			});
 			
 			canvas.addEventListener('pointerdown', function(e) {
+				createParticlesCount = 0;
 				createParticles = true;
 			});
 			
@@ -61,7 +64,8 @@
 			
 			function draw() {
 				c.clearRect(0,0,canvas.width,canvas.height);
-				if(createParticles){
+				if(createParticles && createParticlesCount < 500){
+					createParticlesCount++;
 					let sx = Math.random()-.5;
 					let sy = Math.random()-.5;
 					let l = Math.ceil(Math.random() * 50 + 50);
