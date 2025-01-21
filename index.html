@@ -6,6 +6,9 @@
 	<script>
 		//Just for fun...
 		function animation() {
+		//floatingDots
+			var pCount = document.querySelector('#particleCount');
+			var createdDots = [];
 			var dots = [];
 			var canvas = document.querySelector('canvas');
 			canvas.width = innerWidth;
@@ -13,17 +16,21 @@
 			var c = canvas.getContext('2d');
 			var createParticles = false;
 			var createParticlesCount = 0;
+			var particlesToCreate = 500;
 			var mouseLocation = {x:0,y:0};
 			
 			canvas.addEventListener('pointermove', function(e) {
-				createParticlesCount = 0;
 				const rect = canvas.getBoundingClientRect();
 				mouseLocation.x = e.clientX - rect.left;
 				mouseLocation.y = e.clientY - rect.top;
+				createParticlesCount = particlesToCreate;
 			});
 			
 			canvas.addEventListener('pointerdown', function(e) {
-				createParticlesCount = 0;
+				const rect = canvas.getBoundingClientRect();
+				mouseLocation.x = e.clientX - rect.left;
+				mouseLocation.y = e.clientY - rect.top;
+				createParticlesCount = particlesToCreate;
 				createParticles = true;
 			});
 			
@@ -31,7 +38,8 @@
 				createParticles = false;
 			});
 			
-			function dot(x,y,sx,sy,color,lifeSpan=1000) {
+			function dot(x,y,sx,sy,color,lifeSpan) {
+				this.hasLifeSpan = typeof lifeSpan !== 'Undefined';
 				this.lifeSpan = lifeSpan;
 				this.x = x;
 				this.y = y;
@@ -40,10 +48,12 @@
 				this.color = color;
 				
 				this.update = function() {
-					this.lifeSpan--;
-					if(this.lifeSpan < 0) {
-						dots.splice(dots.indexOf(this),1);
-						return;
+					if(this.hasLifeSpan) {
+						this.lifeSpan--;
+						if(this.lifeSpan < 0) {
+							createdDots.splice(createdDots.indexOf(this),1);
+							return;
+						}
 					}
 					if(this.x + this.sx > canvas.width || this.x + this.sx < 0) {
 						this.sx *= -1;
@@ -63,27 +73,37 @@
 			}
 			
 			function draw() {
+				pCount.innerText = dots.length+createdDots.length;
 				c.clearRect(0,0,canvas.width,canvas.height);
-				if(createParticles && createParticlesCount < 500){
-					createParticlesCount++;
-					let sx = Math.random()-.5;
-					let sy = Math.random()-.5;
-					let l = Math.ceil(Math.random() * 50 + 50);
-					dots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+				if(createParticles && createParticlesCount > 0){
+					createParticlesCount--;
+					let sx = Math.random()*8-4;
+					let sy = Math.random()*8-4;
+					let l = Math.ceil(Math.random() * 50 + 25);
+					createdDots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
 					sx = Math.random()*8-4;
 					sy = Math.random()*8-4;
-					l = Math.ceil(Math.random() * 25 + 25);
-					dots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+					l = Math.ceil(Math.random() * 50 + 25);
+					createdDots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+					sx = Math.random()*8-4;
+					sy = Math.random()*8-4;
+					l = Math.ceil(Math.random() * 50 + 25);
+					createdDots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+					sx = Math.random()*8-4;
+					sy = Math.random()*8-4;
+					l = Math.ceil(Math.random() * 20 + 10);
+					createdDots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
 					sx = Math.random()*2-1;
 					sy = Math.random()*2-1;
-					l = Math.ceil(Math.random() * 200 + 200);
-					dots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+					l = Math.ceil(Math.random() * 400 + 200);
+					createdDots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
 					sx = Math.random()*2-1;
 					sy = Math.random()*2-1;
-					l = Math.ceil(Math.random() * 5000 + 5000);
-					dots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
+					l = Math.ceil(Math.random() * 1000 + 500);
+					createdDots.push(new dot(mouseLocation.x,mouseLocation.y,sx,sy,'#fff',l));
 				}
 				dots.forEach((e) => e.update());
+				createdDots.forEach((e) => e.update());
 				requestAnimationFrame(draw);
 			}
 			
@@ -94,9 +114,15 @@
 				const y = Math.random() * canvas.height;
 				const sx = Math.random()-.5;
 				const sy = Math.random()-.5;
-				const l = Math.ceil(Math.random() * 10000 + 10000);
-				dots.push(new dot(x,y,sx,sy,'#444',l));
+				dots.push(new dot(x,y,sx,sy,'#444'));
 			}
+			
+			window.addEventListener("resize", resizeCanvas);
+			function resizeCanvas() {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			}
+			
 			//initialize animation loop;
 			draw();
 		}
@@ -160,6 +186,13 @@
 			left: 0;
 			bottom: 0;
 		}
+		#particleCount {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			font-size: 10px;
+			pointer-events: none;
+		}
 		.intro {
 			align-self: center;
 			display: flex;
@@ -197,9 +230,9 @@
 			max-width: 650px;
 			margin-left: auto;
 			margin-right: auto;
-			background-color: #222;
+			background-color: #222a;
 			padding: 15px;
-			border: 1px solid black;
+			border: 1px solid #0006;
 			z-index: 2;
 		}
 		.row {
@@ -263,6 +296,7 @@
 </div>
 <div id="home">
 	<div class="canvasContainer">
+		<div><span id="particleCount"></span></div>
 		<canvas>
 	</div>
 	<div class="intro">
@@ -279,18 +313,18 @@
 	<div>
 		<div>Versatile software engineer with 10+ years of experience working with clients to design, develop, and maintain interactive web applications, back-end services, and internal tools. Skilled at quickly adopting new technologies and programming languages to accomplish objectives.
 		<br><br>
-		I hold a Bachelor of Science degree in Computer Science from California State University - Sacramento. I am very familiar with Object Oriented Programming (OOP), design patterns, B2B/B2C, SaaS, microservice development, and the AWS ecosystem.</div>
+		Holds a Bachelor of Science degree in Computer Science from California State University - Sacramento. Is very familiar with Object Oriented Programming (OOP), design patterns, B2B/B2C, SaaS, microservice development, and the AWS ecosystem.</div>
 	</div>
 </div>
 <div id="skills" class="section">
 	<h2>Skills</h2>
 	<div>
 		<div class="row">
-			<div class="cat">Experience with:</div>
+			<div class="cat">Languages:</div>
 			<div>C, C++, Java, PHP, Python, JavaScript, HTML, CSS</div>
 		</div>
 		<div class="row">
-			<div>Expertise in:</div>
+			<div>Environments:</div>
 			<div>RESTful APIs, MySQL Schema, Linux and Windows Server Administration, Apache Web Server, Amazon Web Services (AWS)</div>
 		</div>
 		<div class="row">
