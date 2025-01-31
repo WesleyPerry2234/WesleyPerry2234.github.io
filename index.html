@@ -6,13 +6,13 @@
 	<script>
 		//Just for fun...
 		function animation() {
-		//floatingDots
+			//floatingDots
 			var pCount = document.querySelector('#particleCount');
 			var createdDots = [];
 			var dots = [];
 			var canvas = document.querySelector('canvas');
-			canvas.width = innerWidth;
-			canvas.height = innerHeight;
+			canvas.width = document.querySelector('body').clientWidth;
+			canvas.height = document.querySelector('body').clientHeight;
 			var c = canvas.getContext('2d');
 			var createParticles = false;
 			var createParticlesCount = 0;
@@ -117,11 +117,10 @@
 				dots.push(new dot(x,y,sx,sy,'#444'));
 			}
 			
-			window.addEventListener("resize", resizeCanvas);
-			function resizeCanvas() {
-				canvas.width = window.innerWidth;
-				canvas.height = window.innerHeight;
-			}
+			window.addEventListener("resize", function () {
+				canvas.width = document.querySelector('body').clientWidth;
+				canvas.height = document.querySelector('body').clientHeight;
+			});
 			
 			//initialize animation loop;
 			draw();
@@ -181,7 +180,7 @@
 		}
 		.canvasContainer {
 			position: fixed;
-			top: 0;
+			top: 2rem;
 			right: 0;
 			left: 0;
 			bottom: 0;
