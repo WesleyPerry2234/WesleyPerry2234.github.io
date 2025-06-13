@@ -170,7 +170,7 @@
 		#nav li:hover, #contact li:hover, .intro span {
 			color: lightblue;
 		}
-		#nav a, #contact a {
+		a {
 			text-decoration: none;
 			color: inherit;
 		}
@@ -268,6 +268,42 @@
 		.list span {
 			margin-left: -15px;
 		}
+		.showcase-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+			margin-top: 15px;
+            margin-bottom: 20px;
+        }
+		.showcase-item > h3 {
+            font-size: 24px;
+			margin-bottom: 5px;
+        }
+		.showcase-item > p {
+            margin-bottom: 15px;
+		}
+		.characteristics {
+			font-size: small;
+		}
+		.gallery {
+			display: grid;
+			grid-template-columns: 24.6% 24.6% 24.6% 24.6%;
+			margin-bottom: 10px;
+		}
+		.gallery-item {
+			float: left;
+			border: 1px solid grey;
+		}
+		.gallery-item:hover {
+			border: 1px solid black;
+		}
+		.gallery-item img{
+			width: 100%;
+			height: auto;
+		}
+		.desc {
+			padding: 15px;
+			text-align: center;
+		}
 		#contact {
 			margin-bottom: 2rem;
 		}
@@ -288,8 +324,8 @@
 		<li><a href="#home">Home</a></li>
 		<li><a href="#about">About</a></li>
 		<li><a href="#skills">Skills</a></li>
-		<li><a href="#workHistory">Work History</a></li><!--
-		<li><a href="#projects">Projects</a></li>-->
+		<li><a href="#workHistory">Work History</a></li>
+		<li><a href="#projects">Projects</a></li>
 		<li><a href="#contact">Contact</a></li>
 	</ul>
 </div>
@@ -401,13 +437,49 @@
 			</ul>
 		</div>
 	</div>
-</div><!--
+</div>
 <div id="projects" class="section">
 	<h2>Projects</h2>
-	<div>Project 1</div>
-	<div>Project 2</div>
-	<div>Project 3</div>
-</div>-->
+	<div>
+		<div>Since 2006, my passion for creation has been the driving force behind my journey in software development. I thrive on diving into diverse technological ecosystems, leveraging a broad toolkit that encompasses foundational languages like Pascal and C++, modern staples like Python and JavaScript, and strong automation capabilities in PowerShell, Bash, and CMD. I focus on applying this versatile skill set to deliver tangible results, from enhancing legacy systems and building community-focused applications to automating intricate workflows.
+		<br><br>
+		This collection showcases some of my favorite work. It's a living portfolio, and I'm actively updating it with ongoing developments and key projects from my archives.</div>
+	</div>
+	<div class="showcase-item">
+		<h3><strong>Pinger Project</strong></h3>
+		<p class="characteristics">- May 2025, Python, PyQtGraph, Multi-threaded, Configurable, Efficient</p>
+		<p><strong>Description:</strong> Provides quick and easy visualization of network latency. Graphs the results of many pings to one or more hosts.</p>
+		<p><strong>Back Story:</strong> I created this utility after experiencing intermittent internet outages that were difficult to document. My initial solution involved using multiple cascaded instances of a graphical ping utility (<a target="_blank" href="https://www.gping.com/">GPING</a>) to visually demonstrate the connection drops for my ISP. While effective for illustration, this process was manual and inefficient, requiring me to launch, configure, and position each window. To address this, I developed this comprehensive tool that provides the same cascaded monitoring functionality but with greatly enhanced customizability and full automation, streamlining the entire diagnostic process into a single, executable shortcut.</p>
+		<p><strong>Gallery:</strong></p>
+		<div class="gallery">
+			<div class="gallery-item">
+				<a target="_blank" rel="noopener noreferrer" href="https://i.imgur.com/6A4mETH.png">
+					<img src="https://i.imgur.com/IRiBItk.jpeg" alt="Showcasing the Pinger with 4 targets">
+				</a>
+				<div class="desc">4 targets with individual configuration settings</div>
+			</div>
+			<div class="gallery-item">
+				<a target="_blank" rel="noopener noreferrer" href="https://i.imgur.com/VW5DFtn.png">
+				<img src="https://i.imgur.com/UmNSFsk.jpeg" alt="Showing some simulated network congestion (a speed test)">
+				</a>
+				<div class="desc">Simulated network congestion (speed test)</div>
+			</div>
+			<div class="gallery-item">
+				<a target="_blank" rel="noopener noreferrer" href="https://i.imgur.com/RoKZ6ea.gif">
+				<img src="https://i.imgur.com/uBfrnn4.jpeg" alt="An animation showing normal operation">
+				</a>
+				<div class="desc">Animation showing normal operation*</div>
+			</div>
+			<div class="gallery-item">
+				<a target="_blank" rel="noopener noreferrer" href="https://i.imgur.com/jVIIKdj.gif">
+				<img src="https://i.imgur.com/RpLpdYa.jpeg" alt="An animation showing simulated network congestion (a speed test)">
+				</a>
+				<div class="desc">Animation showing simulated network congestion*</div>
+			</div>
+		</div>
+		<p>* Please forgive video choppiness. They were recorded through remote desktop.</p>
+	</div>
+</div>
 <div id="contact" class="section">
 	<h2>Contact</h2>
 	<div>
